@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 1rem;
+    --background: 0.97 0.008 245;
+    --foreground: 0.21 0.012 265;
+    --card: 1 0 0;
+    --card-foreground: 0.21 0.012 265;
+    --popover: 1 0 0;
+    --popover-foreground: 0.21 0.012 265;
+    --primary: 0.58 0.16 245;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.965 0.02 245;
+    --secondary-foreground: 0.21 0.012 265;
+    --muted: 0.96 0.015 245;
+    --muted-foreground: 0.55 0.02 255;
+    --accent: 0.93 0.04 245;
+    --accent-foreground: 0.45 0.12 245;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.92 0.012 245;
+    --input: 0.92 0.012 245;
+    --ring: 0.58 0.16 245;
+    --chart-1: 0.58 0.16 245;
+    --chart-2: 0.62 0.15 155;
+    --chart-3: 0.7 0.15 295;
+    --chart-4: 0.75 0.16 65;
+    --chart-5: 0.65 0.22 27;
+    --sidebar: 0.965 0.02 245;
+    --sidebar-foreground: 0.21 0.012 265;
+    --sidebar-primary: 0.58 0.16 245;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.93 0.04 245;
+    --sidebar-accent-foreground: 0.45 0.12 245;
+    --sidebar-border: 0.92 0.012 245;
+    --sidebar-ring: 0.58 0.16 245;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  }
+}
+
+@layer utilities {
+  .pastel-gradient {
+    background: linear-gradient(
+      135deg,
+      #ede7f6 0%,
+      #e3f2fd 30%,
+      #e8f5e9 65%,
+      #fff3e0 100%
+    );
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+  }
+
+  .sidebar-bg {
+    background: linear-gradient(180deg, #eef4ff 0%, #f0edff 100%);
+  }
+
+  .suspicious-glow {
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
+  }
+
+  .kpi-blue {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  }
+  .kpi-purple {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  }
+  .kpi-mint {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  }
+  .kpi-peach {
+    background: linear-gradient(135deg, #ffedd5, #fed7aa);
+  }
+
+  .shine-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transform: skewX(-20deg);
+    transition: none;
+  }
+  .shine-hover:hover::after {
+    animation: shine-sweep 0.6s ease forwards;
+  }
+
+  @keyframes shine-sweep {
+    from {
+      left: -100%;
+    }
+    to {
+      left: 160%;
+    }
+  }
+
+  @keyframes ticker {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+  }
+  .animate-pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.45s ease-out forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3), 0 8px 24px
+      rgba(99, 102, 241, 0.12);
+  }
+}
